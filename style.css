@@ -75,3 +75,41 @@ th, td {
   border: solid 1px #f0f0f0;
   padding: 0.5rem;
 }
+
+.txt-preview {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 16px;
+
+  background: #f5f5f5;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.txt-preview pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  margin: 0 0 12px 0;
+
+  font-family: monospace;
+  line-height: 1.5;
+}
+
+.txt-preview button {
+  padding: 8px 14px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #333;
+  color: white;
+
+  cursor: pointer;
+}
+
+.txt-preview button:hover {
+  opacity: 0.85;
+}
