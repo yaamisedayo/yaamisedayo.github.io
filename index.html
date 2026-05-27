@@ -62,5 +62,43 @@
     <iframe src="https://openprocessing.org/sketch/2956527/embed/" width="400" height="400"></iframe>
     <h3>X</h3>
     <a class="twitter-timeline" data-width="400" data-height="600" href="https://twitter.com/jatfeys?ref_src=twsrc%5Etfw">Tweets by jatfeys</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <div class="text-box" id="textBox">
+    <div class="text-content" id="textContent">読み込み中...</div>
+    
+    <div class="expand-overlay">
+      <button class="expand-btn" id="expandBtn">展開してさらに表示</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const textContainer = document.getElementById('textContent');
+      const expandBtn = document.getElementById('expandBtn');
+      const textBox = document.getElementById('textBox');
+
+      // 1. 用意したtxtファイルを読み込む（ファイル名はご自身のものに変更してください）
+      fetch('ldyclzfx.txt')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('ファイルの読み込みに失敗しました');
+          }
+          return response.text();
+        })
+        .then(text => {
+          // 読み込んだテキストを要素にセットする
+          textContainer.textContent = text;
+        })
+        .catch(error => {
+          textContainer.textContent = 'テキストを読み込めませんでした。';
+          console.error(error);
+        });
+
+      // 2. ボタンクリック時の展開処理
+      expandBtn.addEventListener('click', () => {
+        textBox.classList.add('is-expanded');
+      });
+    });
+  </script>
   </body>
 </html>
