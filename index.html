@@ -56,18 +56,44 @@
 
     <h3>History</h3>
     <p>Coming soon...</p>
-    <h3>動画</h3>
+    <h3>作った動画</h3>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/opzu49NkNMI?si=cvyUZeqxxhUJrh78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <h3>Open Processing</h3>
     <iframe src="https://openprocessing.org/sketch/2956527/embed/" width="400" height="400"></iframe>
-    <h3>独自配列</h3>
-    <pre id="viewer"></pre>
-
+    <h3>自作配列:やみ配列</h3>
+    <div class="txt-preview">
+      <pre id="viewer">読み込み中...</pre>
+      <button id="toggleBtn">もっと見る</button>
+    </div>
+    
     <script>
-    fetch("ldyclzfx.txt")
+    let fullText = "";
+    let expanded = false;
+    
+    fetch("sample.txt")
       .then(r => r.text())
       .then(t => {
-        document.getElementById("viewer").textContent =
-          t.slice(0, 200) + "...";
+        fullText = t;
+        updateText();
       });
+    
+    function updateText() {
+      const viewer = document.getElementById("viewer");
+      const btn = document.getElementById("toggleBtn");
+    
+      if (expanded) {
+        viewer.textContent = fullText;
+        btn.textContent = "閉じる";
+      } else {
+        viewer.textContent = fullText.slice(0, 200) + "...";
+        btn.textContent = "もっと見る";
+      }
+    }
+    
+    document.getElementById("toggleBtn").addEventListener("click", () => {
+      expanded = !expanded;
+      updateText();
+    });
     </script>
+  </body>
+</html>
